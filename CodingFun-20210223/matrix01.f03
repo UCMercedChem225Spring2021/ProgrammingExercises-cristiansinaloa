@@ -24,7 +24,8 @@
       character(len=256)::commandLineArg
       logical::fail=.false.
 !
- 1000 Format('n = ',I10,'  Job Time: ',F10.3,' s.')
+ 1000 Format('My MatMuln = ',I10,'  Job Time: ',F10.3,' s.')
+ 1100 Format('MatMul n = ',I10,'  Job Time: ',F10.3,' s.')
  9000 Format('Failure reading command line arguments...incorrect number.')
  9999 Format('The program FAILED!')
 !
@@ -48,11 +49,22 @@
 !     Carry out matrix multiplication using explicit nested loops.
 !
       call CPU_TIME(tStart)
-
-*** ADD MATRIX MULTIPLICATION CODE HERE...USE LOOPS WITH COUNTERS i, j, AND k. ***
-
+      Do i=1,n
+        Do j=1,n
+          Do k=1,n
+            C(i,j) = C(i,j) + A(i,k)*B(k,j)
+          End Do
+        End Do
+      End Do
       call CPU_TIME(tEnd)
       write(iOut,1000) n,tEnd-tStart
+!
+!     Now try it with Matmul
+!
+      call CPU_TIME(tStart)
+      C = MatMul(A,B)
+      call CPU_TIME(tEnd)
+      write(iOut,1100) n,tEnd-tStart
 !
   999 if(fail) write(iOut,9999)
       end program matrix01
