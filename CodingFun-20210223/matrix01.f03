@@ -24,7 +24,7 @@
       character(len=256)::commandLineArg
       logical::fail=.false.
 !
- 1000 Format('My MatMuln = ',I10,'  Job Time: ',F10.3,' s.')
+ 1000 Format('My MatMul n = ',I10,'  Job Time: ',F10.3,' s.')
  1100 Format('MatMul n = ',I10,'  Job Time: ',F10.3,' s.')
  9000 Format('Failure reading command line arguments...incorrect number.')
  9999 Format('The program FAILED!')
